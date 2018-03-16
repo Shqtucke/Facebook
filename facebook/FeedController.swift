@@ -8,10 +8,14 @@
 
 import UIKit
 
-class FeedController: UICollectionViewController {
+let cellId = "cellId"
+
+class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.title = "Futucke Inc"
         
         collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
