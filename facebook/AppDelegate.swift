@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         
-        let feedController = UICollectionViewController(collectionViewLayout: UICollectionViewFlowLayout())
+        let feedController = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let navigationController = UINavigationController(rootViewController: feedController)
         window?.rootViewController = navigationController
         

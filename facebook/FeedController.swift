@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ViewController: UICollectionViewController {
+class FeedController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView?.backgroundColor = UIColor(white: 0.95, alpha: 1)
         
     }
 
