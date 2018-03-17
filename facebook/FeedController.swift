@@ -55,8 +55,18 @@ class FeedCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
-        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+        let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
+        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        
+        attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
+        
+        let attachment = NSTextAttachment()
+        attachment.image = UIImage(named: "globe_small")
+        attachment.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
+        attributedText.append(NSAttributedString(attachment: attachment))
         
         label.attributedText = attributedText
         
