@@ -12,10 +12,12 @@ let cellId = "cellId"
 
 class Post {
     var name: String?
-    var statusText: String?
     var profileImageName: String?
-    
-}
+    var statusText: String?
+    var statusImageName: String?
+    var numLikes: Int?
+    var numComments: Int?
+    }
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
@@ -27,15 +29,30 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let postMark = Post()
         postMark.name = "Shawn Tucker"
         postMark.statusText = "CEO of Futucke Inc has been a game changer!"
-        postMark.profileImageName = "zuckprofile"
+        postMark.profileImageName = "Me2"
+        postMark.statusImageName = "steve_profile"
+        postMark.numLikes = 400
+        postMark.numComments = 123
         
         let postSteve = Post()
         postSteve.name = "Adam Williams"
         postSteve.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see his clothing line coming to an Outlet near you very soon."
         postSteve.profileImageName = "steve_profile"
+        postSteve.statusImageName = "futucke4"
+        postSteve.numLikes = 400
+        postSteve.numComments = 123
+        
+        let postLeroy = Post()
+        postLeroy.name = "LeroyJenkins"
+        postLeroy.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see"
+        postLeroy.profileImageName = "futucke4"
+        postLeroy.statusImageName = "Me2"
+        postLeroy.numLikes = 700
+        postLeroy.numComments = 123
         
         posts.append(postMark)
         posts.append(postSteve)
+        posts.append(postLeroy)
         
         navigationItem.title = "Futucke Inc"
         
@@ -114,6 +131,10 @@ class FeedCell: UICollectionViewCell {
             
             if let profileImagename = post?.profileImageName {
                 profileImageView.image = UIImage(named: profileImagename)
+            }
+            
+            if let statusImageName = post?.statusImageName {
+                statusImageView.image = UIImage(named: statusImageName)
             }
             
             }
