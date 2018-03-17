@@ -54,16 +54,23 @@ class FeedCell: UICollectionViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Futucke Inc"
-        label.font = UIFont.boldSystemFont(ofSize: 14)
-        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 2
+        let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 14)])
+        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+        
+        label.attributedText = attributedText
+        
+        
+//        label.text = "Futucke Inc"
+//        label.font = UIFont.boldSystemFont(ofSize: 14)
+//        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let profileImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.image = UIImage(named:"Me2")
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = UIColor.red
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -81,11 +88,8 @@ class FeedCell: UICollectionViewCell {
         addConstraintsWithFormat(format: "V:|[v0]|", views: nameLabel)
         addConstraintsWithFormat(format: "V:|-8-[v0(44)]|", views: profileImageView)
         
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": nameLabel]))
-//
-//        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[v0(44)]|", options: NSLayoutFormatOptions(), metrics: nil, views: ["v0": profileImageView]))
-        
-    }
+
+}
 }
 
 extension UIView {
