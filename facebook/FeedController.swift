@@ -34,7 +34,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 300)
+        return CGSize(width: view.frame.width, height: 400)
     }
 
 
@@ -113,12 +113,21 @@ class FeedCell: UICollectionViewCell {
         return view
     }()
     
-    let likeButton: UIButton = {
+    let likeButton: UIButton = FeedCell.buttonForTitle(title: "Like", imageName: "like")
+    let commentButton: UIButton = FeedCell.buttonForTitle(title: "Comment", imageName: "comment")
+    let shareButton: UIButton = FeedCell.buttonForTitle(title: "Share", imageName: "share")
+    
+    
+    static func buttonForTitle(title: String, imageName: String) -> UIButton {
         let button = UIButton()
-        button.setTitle("Like", for: .normal)
-        button.setTitleColor(UIColor.rgb(red: 143, green: 150, blue: 263), for: .normal)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(UIColor.rgb(red: 143, green: 150, blue: 163), for: .normal)
+        
+        button.setImage(UIImage(named:imageName), for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         return button
-    }()
+    }
     
     
     func setupViews() {
@@ -133,6 +142,9 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(dividerLineView)
         addSubview(likeButton)
+        addSubview(commentButton)
+        addSubview(shareButton)
+        
         
         addConstraintsWithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
@@ -144,13 +156,14 @@ class FeedCell: UICollectionViewCell {
         
         addConstraintsWithFormat(format: "H:|-12-[v0]-12-|", views: dividerLineView)
         
-        addConstraintsWithFormat(format: "H:|[v0]|", views: likeButton)
+        addConstraintsWithFormat(format: "H:|[v0(v2)][v1(v2)][v2]|", views: likeButton, commentButton, shareButton)
         
         addConstraintsWithFormat(format: "V:|-12-[v0]", views: nameLabel)
         
+        addConstraintsWithFormat(format: "V:|-12-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)][v5(44)]|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
         
-        addConstraintsWithFormat(format: "V:|-12-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-[v4(0.4)]-8-[v5(44)]-8-|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel, dividerLineView, likeButton)
-        
+        addConstraintsWithFormat(format: "V:[v0(44)]|", views: commentButton)
+        addConstraintsWithFormat(format: "V:[v0(44)]|", views: shareButton)
 
 }
 }
