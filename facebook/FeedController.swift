@@ -102,6 +102,13 @@ class FeedCell: UICollectionViewCell {
         return imageView
     }()
     
+    let likesCommentsLabel: UILabel = {
+        let label = UILabel()
+        label.text = "488 Likes   10.8k Comments"
+        label.font = UIFont.systemFont(ofSize: 12)
+        return label
+    }()
+    
     func setupViews() {
         
         backgroundColor = UIColor.white
@@ -110,6 +117,7 @@ class FeedCell: UICollectionViewCell {
         addSubview(profileImageView)
         addSubview(statusTextView)
         addSubview(statusImageView)
+        addSubview(likesCommentsLabel)
         
         addConstraintsWithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
@@ -117,9 +125,11 @@ class FeedCell: UICollectionViewCell {
         
         addConstraintsWithFormat(format: "H:|[v0]|", views: statusImageView)
         
+        addConstraintsWithFormat(format: "H:|-12-[v0]|", views: likesCommentsLabel)
+        
         addConstraintsWithFormat(format: "V:|-12-[v0]", views: nameLabel)
         
-        addConstraintsWithFormat(format: "V:|-12-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
+        addConstraintsWithFormat(format: "V:|-12-[v0(44)]-4-[v1(30)]-4-[v2]-8-[v3(24)]-8-|", views: profileImageView, statusTextView, statusImageView, likesCommentsLabel)
         
 
 }
