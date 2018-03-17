@@ -10,10 +10,25 @@ import UIKit
 
 let cellId = "cellId"
 
+class Post {
+   var name: String?
+}
+
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let postMark = Post()
+        postMark.name = "Mark Turner"
+        
+        let postSteve = Post()
+        postSteve.name = "Steve Jobs"
+        
+        posts.append(postMark)
+        posts.append(postSteve)
         
         navigationItem.title = "Futucke Inc"
         
@@ -25,12 +40,18 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return posts.count
+        
     }
 
    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let feedCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! FeedCell
+        if let name = posts[indexPath.item].name {
+            feedCell.nameLabel.text = name
+        }
+        
+        return feedCell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -48,6 +69,31 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 class FeedCell: UICollectionViewCell {
     
+    var post: Post? {
+        
+        didSet {
+            
+            let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
+            attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor:
+                UIColor.rgb(red: 155, green: 161, blue: 171)]))
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 4
+            
+            attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
+            
+            
+            //How to include imageViews inside of your text
+            let attachment = NSTextAttachment()
+            attachment.image = UIImage(named: "globe_small")
+            attachment.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
+            attributedText.append(NSAttributedString(attachment: attachment))
+            
+            nameLabel.attributedText = attributedText
+
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -61,24 +107,7 @@ class FeedCell: UICollectionViewCell {
     let nameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
-        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor:
-            UIColor.rgb(red: 155, green: 161, blue: 171)]))
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 4
-        
-        attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
-        
-        
-        //How to include imageViews inside of your text
-        let attachment = NSTextAttachment()
-        attachment.image = UIImage(named: "globe_small")
-        attachment.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
-        attributedText.append(NSAttributedString(attachment: attachment))
-        
-        label.attributedText = attributedText
-
         return label
     }()
     
