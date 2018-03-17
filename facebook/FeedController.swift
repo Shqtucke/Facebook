@@ -56,7 +56,8 @@ class FeedCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         let attributedText = NSMutableAttributedString(string: "Shawn Tucker", attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 16)])
-        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor(red: 155/255, green: 161/255, blue: 171/255, alpha: 1)]))
+        attributedText.append(NSAttributedString(string: "\nJune 12, 1971 ° Columbia SC ", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor:
+            UIColor.rgb(red: 155, green: 161, blue: 171)]))
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
@@ -71,11 +72,7 @@ class FeedCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(attachment: attachment))
         
         label.attributedText = attributedText
-        
-        
-//        label.text = "Futucke Inc"
-//        label.font = UIFont.boldSystemFont(ofSize: 14)
-//        label.translatesAutoresizingMaskIntoConstraints = false
+
         return label
     }()
     
@@ -133,6 +130,13 @@ class FeedCell: UICollectionViewCell {
         
 
 }
+}
+
+extension UIColor {
+    
+    static func rgb(red:CGFloat, green: CGFloat, blue:CGFloat) -> UIColor {
+        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: 1)
+    }
 }
 
 extension UIView {
