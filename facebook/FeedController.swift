@@ -34,7 +34,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 60)
+        return CGSize(width: view.frame.width, height: 300)
     }
 
 
@@ -63,6 +63,8 @@ class FeedCell: UICollectionViewCell {
         
         attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedText.string.characters.count))
         
+        
+        //How to include imageViews inside of your text
         let attachment = NSTextAttachment()
         attachment.image = UIImage(named: "globe_small")
         attachment.bounds = CGRect(x: 0, y: -2, width: 14, height: 14)
@@ -85,6 +87,20 @@ class FeedCell: UICollectionViewCell {
         return imageView
     }()
     
+    let statusTextView: UITextView = {
+        let textView = UITextView()
+        textView.text = "Meanwhile, Tucke will succeed!!"
+        textView.font = UIFont.systemFont(ofSize: 14)
+        return textView
+    }()
+    
+    let statusImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "futucke4")
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
     
     func setupViews() {
         
@@ -92,11 +108,18 @@ class FeedCell: UICollectionViewCell {
         
         addSubview(nameLabel)
         addSubview(profileImageView)
+        addSubview(statusTextView)
+        addSubview(statusImageView)
         
         addConstraintsWithFormat(format: "H:|-8-[v0(44)]-8-[v1]|", views: profileImageView, nameLabel)
         
-        addConstraintsWithFormat(format: "V:|[v0]|", views: nameLabel)
-        addConstraintsWithFormat(format: "V:|-8-[v0(44)]|", views: profileImageView)
+        addConstraintsWithFormat(format: "H:|-4-[v0]-4-|", views: statusTextView)
+        
+        addConstraintsWithFormat(format: "H:|[v0]|", views: statusImageView)
+        
+        addConstraintsWithFormat(format: "V:|-12-[v0]", views: nameLabel)
+        
+        addConstraintsWithFormat(format: "V:|-12-[v0(44)]-4-[v1(30)]-4-[v2]|", views: profileImageView, statusTextView, statusImageView)
         
 
 }
