@@ -11,8 +11,10 @@ import UIKit
 let cellId = "cellId"
 
 class Post {
-   var name: String?
+    var name: String?
     var statusText: String?
+    var profileImageName: String?
+    
 }
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -25,10 +27,12 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let postMark = Post()
         postMark.name = "Shawn Tucker"
         postMark.statusText = "CEO of Futucke Inc has been a game changer!"
+        postMark.profileImageName = "zuckprofile"
         
         let postSteve = Post()
         postSteve.name = "Adam Williams"
         postSteve.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see his clothing line coming to an Outlet near you very soon."
+        postSteve.profileImageName = "steve_profile"
         
         posts.append(postMark)
         posts.append(postSteve)
@@ -63,7 +67,7 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             
             let knownHeight: CGFloat = 8 + 44 + 4 + 4 + 200 + 8 + 24 + 8 + 44
             
-            return CGSize(width: view.frame.width, height: rect.height + knownHeight + 16)
+            return CGSize(width: view.frame.width, height: rect.height + knownHeight + 24)
         }
         
         return CGSize(width: view.frame.width, height: 500)
@@ -106,6 +110,10 @@ class FeedCell: UICollectionViewCell {
             
             if let statusText = post?.statusText {
                 statusTextView.text = statusText
+            }
+            
+            if let profileImagename = post?.profileImageName {
+                profileImageView.image = UIImage(named: profileImagename)
             }
             
             }
