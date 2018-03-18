@@ -17,6 +17,8 @@ class Post {
     var statusImageName: String?
     var numLikes: Int?
     var numComments: Int?
+    
+    
     }
 
 class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
@@ -34,6 +36,14 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 
                 let jsonDictionary = try(JSONSerialization.jsonObject(with: data as Data, options: .mutableContainers))
                 
+//                if let postDictionary = jsonDictionary["post"] as? [String: AnyObject] {
+//                    let post = Post()
+//                    post.setValuesForKeysWithDictionary(postDictionary)
+//
+//                    //self.posts = [post]
+//                    //print(post.name, post.statusText)
+//                }
+                
                 print(jsonDictionary)
                 
                 
@@ -42,34 +52,34 @@ class FeedController: UICollectionViewController, UICollectionViewDelegateFlowLa
             }
         }
         
-//        let postMark = Post()
-//        postMark.name = "Shawn Tucker"
-//        postMark.statusText = "CEO of Futucke Inc has been a game changer!"
-//        postMark.profileImageName = "Me2"
-//        postMark.statusImageName = "steve_profile"
-//        postMark.numLikes = 400
-//        postMark.numComments = 123
-//
-//        let postSteve = Post()
-//        postSteve.name = "Adam Williams"
-//        postSteve.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see his clothing line coming to an Outlet near you very soon."
-//        postSteve.profileImageName = "steve_profile"
-//        postSteve.statusImageName = "futucke4"
-//        postSteve.numLikes = 400
-//        postSteve.numComments = 123
-//
-//        let postLeroy = Post()
-//        postLeroy.name = "LeroyJenkins"
-//        postLeroy.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see"
-//        postLeroy.profileImageName = "futucke4"
-//        postLeroy.statusImageName = "Me2"
-//        postLeroy.numLikes = 700
-//        postLeroy.numComments = 123
-//
-//        posts.append(postMark)
-//        posts.append(postSteve)
-//        posts.append(postLeroy)
-//
+        let postMark = Post()
+        postMark.name = "Shawn Tucker"
+        postMark.statusText = "CEO of Futucke Inc has been a game changer!"
+        postMark.profileImageName = "Me2"
+        postMark.statusImageName = "steve_profile"
+        postMark.numLikes = 400
+        postMark.numComments = 123
+
+        let postSteve = Post()
+        postSteve.name = "Adam Williams"
+        postSteve.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see his clothing line coming to an Outlet near you very soon."
+        postSteve.profileImageName = "steve_profile"
+        postSteve.statusImageName = "futucke4"
+        postSteve.numLikes = 400
+        postSteve.numComments = 123
+
+        let postLeroy = Post()
+        postLeroy.name = "LeroyJenkins"
+        postLeroy.statusText = "This is my favorite nephew. \nHe's making things happen. \nJust wait until you see"
+        postLeroy.profileImageName = "futucke4"
+        postLeroy.statusImageName = "Me2"
+        postLeroy.numLikes = 700
+        postLeroy.numComments = 123
+
+        posts.append(postMark)
+        posts.append(postSteve)
+        posts.append(postLeroy)
+
         navigationItem.title = "Futucke Inc"
         
         collectionView?.alwaysBounceVertical = true
