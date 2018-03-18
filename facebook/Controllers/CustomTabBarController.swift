@@ -15,7 +15,14 @@ class CustomTabBarController: UITabBarController {
         
         let feedController = FeedController(collectionViewLayout: UICollectionViewFlowLayout())
         let navigationController = UINavigationController(rootViewController: feedController)
+        navigationController.title = "News Feed"
+        navigationController.tabBarItem.image = UIImage(named: "news_feed_icon")
         
-        viewControllers = [navigationController]
+        let friendRequestControler = UIViewController()
+        let secondViewController = UINavigationController(rootViewController: friendRequestControler)
+        secondViewController.title = "Requests"
+        secondViewController.tabBarItem.image = UIImage(named: "requests_icon")
+        
+        viewControllers = [navigationController, secondViewController]
     }
 }

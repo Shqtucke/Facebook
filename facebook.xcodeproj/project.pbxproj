@@ -39,6 +39,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC029D2C205DF29E00598B52 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DC692146205C800D000C15D0 /* FeedController.swift */,
+				DC029D2A205DF1A600598B52 /* CustomTabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		DC692138205C800D000C15D0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,14 +67,13 @@
 		DC692143205C800D000C15D0 /* facebook */ = {
 			isa = PBXGroup;
 			children = (
+				DC029D2C205DF29E00598B52 /* Controllers */,
 				DC692144205C800D000C15D0 /* AppDelegate.swift */,
-				DC692146205C800D000C15D0 /* FeedController.swift */,
 				DC69214B205C800D000C15D0 /* Assets.xcassets */,
 				DC69214D205C800D000C15D0 /* LaunchScreen.storyboard */,
 				DC692150205C800D000C15D0 /* Info.plist */,
 				DC067955205DBA7B0044012A /* all_posts.json */,
 				DC067954205DBA7B0044012A /* single_post.json */,
-				DC029D2A205DF1A600598B52 /* CustomTabBarController.swift */,
 			);
 			path = facebook;
 			sourceTree = "<group>";
